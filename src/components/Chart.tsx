@@ -54,7 +54,6 @@ const Chart:React.FC<ChartProps> = ({ area, scores }) => {
       }
     },
     plugins: {
-      id: "frontend",
       legend: {
         position: "right" as LegendPosition,
         labels: {
@@ -72,7 +71,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores }) => {
     labels: areasData.topics.map((topic) => (topic.label)),
     datasets: [
       {
-        label: '# of Votes',
+        label: ' Vurdering',
         data: scores.map(topic => topic.score),
         backgroundColor: colors,
         borderWidth: 1,

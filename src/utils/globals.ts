@@ -4,7 +4,7 @@ export const areas = {
     topics: [
       {
         id:'sharing-visibility',
-        label: 'Deling/Synlighet'
+        label: 'Dele/Synlighet'
       },
       {
         id: 'ui-design',
@@ -44,12 +44,12 @@ export const areas = {
       }
     ],
   },
-  backend: {
-    label: "Backend",
+  app: {
+    label: "App",
     topics: [
       {
         id:'sharing-visibility',
-        label: 'Deling/Synlighet'
+        label: 'Dele/Synlighet'
       },
       {
         id: 'ui-design',
@@ -87,6 +87,104 @@ export const areas = {
         id: 'learning',
         label: 'Læring'
       }
+    ]
+  },
+  backend: {
+    label: "Backend",
+    topics: [
+      {
+        id:'sharing-visibility',
+        label: 'Dele/Synlighet'
+      },
+      {
+        id: 'ui-design',
+        label: 'UI/Design'
+      },
+      {
+        id: 'debugging',
+        label: 'Debugging'
+      },
+      {
+        id: 'programming',
+        label: 'Programmering'
+      },
+      {
+        id: 'security',
+        label: 'Sikkerhet'
+      },
+      {
+        id: 'quality-process-framework',
+        label: 'Kvalitet/Prosess/Rammeverk'
+      },
+      {
+        id: 'business',
+        label: 'Forretning'
+      },
+      {
+        id: 'communication',
+        label: 'Kommunikasjon'
+      },
+      {
+        id: 'leadership',
+        label: 'Lede/Ta ansvar'
+      },
+      {
+        id: 'learning',
+        label: 'Læring'
+      }
+    ]
+  },
+  platform: {
+    label: "Plattform",
+    topics: [
+      {
+        id:'sharing-visibility',
+        label: 'Dele/Synlighet'
+      },
+      {
+        id: 'ui-design',
+        label: 'UI/Design'
+      },
+      {
+        id: 'debugging',
+        label: 'Debugging'
+      },
+      {
+        id: 'programming',
+        label: 'Programmering'
+      },
+      {
+        id: 'security',
+        label: 'Sikkerhet'
+      },
+      {
+        id: 'quality-process-framework',
+        label: 'Kvalitet/Prosess/Rammeverk'
+      },
+      {
+        id: 'business',
+        label: 'Forretning'
+      },
+      {
+        id: 'communication',
+        label: 'Kommunikasjon'
+      },
+      {
+        id: 'leadership',
+        label: 'Lede/Ta ansvar'
+      },
+      {
+        id: 'learning',
+        label: 'Læring'
+      },
+      {
+        id: 'support',
+        label: 'Support'
+      },
+      {
+        id: 'infrastruktur',
+        label: 'Infrastruktur'
+      },
     ]
   },
 }

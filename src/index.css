@@ -75,10 +75,6 @@ button:focus-visible {
   }
 }
 
-canvas {
-  height: 600px;
-}
-
 fieldset {
   display: flex;
   flex-direction: column;
@@ -105,6 +101,9 @@ fieldset {
 .container {
   width: 100%;
   max-width: 100vw;
+  &.canvas {
+    height: 800px;
+  }
 }
 
 .no-list-style {
