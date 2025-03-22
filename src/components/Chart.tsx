@@ -17,6 +17,7 @@ type ChartProps = {
     score: number
   }[]
 }
+
 type LegendPosition = "top" | "left" | "bottom" | "right";
 
 const Chart:React.FC<ChartProps> = ({ area, scores }) => {
@@ -25,6 +26,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores }) => {
   if (!areasData) {
     return <div>Invalid area selected</div>;
   }
+  
   const config = {
     responsive: true,
     maintainAspectRatio: false,
@@ -74,7 +76,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores }) => {
         label: ' Vurdering',
         data: scores.map(topic => topic.score),
         backgroundColor: colors,
-        borderWidth: 1,
+        borderWidth: 0,
       },
     ],
   };

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "./components/Chart";
 import { areas } from "./utils/globals";
+import { loadLocal, saveLocal } from "./utils/helpers";
 
 const App = () => {
   const [selectedArea, setSelectedArea] = useState<string>("");
@@ -13,7 +14,18 @@ const App = () => {
       ? prevScore.map((item) => item.name === topicId ? { ...item, score: score } : item )
       : [...prevScore, { name: topicId, score: score }]
     )
+    saveLocal(`posten-kompetanse-${selectedArea}`,JSON.stringify(scores))
   }
+
+  useEffect(() => {
+    const getFromLocal = loadLocal(`posten-kompetanse-${selectedArea}`)
+    if(selectedArea && getFromLocal) {  
+      const localData = JSON.parse(getFromLocal)
+      setScores(localData)
+    } else {
+      setScores(areas[selectedArea as keyof typeof areas]?.topics.map((topic) => ({ name: topic.id, score: 3 })))
+    }
+  },[selectedArea])
 
   return (
     <div className="wrapper">

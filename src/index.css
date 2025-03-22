@@ -138,3 +138,9 @@ fieldset {
 .justify-csb {
   justify-content: space-between;
 }
+
+@media print {
+  h1, h2 {
+    display: none;
+  }
+}
