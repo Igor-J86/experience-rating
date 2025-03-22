@@ -6,12 +6,12 @@ const App = () => {
   const [selectedArea, setSelectedArea] = useState<string>("");
   const [scores, setScores] = useState<{ name: string; score: number }[]>([])
 
-  const handleScore = ({ currentTarget: { name, value } }:React.ChangeEvent<HTMLInputElement>) => {
-    const topicId = name
-    const score = +value
+  const handleScore = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const topicId = e.currentTarget.name
+    const score = +e.currentTarget.value
     setScores(prevScore => prevScore.some((item) => item.name === topicId)
-      ? prevScore.map((item) => item.name === topicId ? { ...item, score } : item )
-      : [...prevScore, { name, score }]
+      ? prevScore.map((item) => item.name === topicId ? { ...item, score: score } : item )
+      : [...prevScore, { name: topicId, score: score }]
     )
   }
 
