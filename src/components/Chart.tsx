@@ -20,7 +20,7 @@ type ChartProps = {
 type LegendPosition = "top" | "left" | "bottom" | "right";
 
 const Chart:React.FC<ChartProps> = ({ area, scores }) => {
-  const areasData = areas[area as keyof typeof areas]; 
+  const areasData = areas[area as keyof typeof areas];
 
   if (!areasData) {
     return <div>Invalid area selected</div>;
@@ -31,8 +31,8 @@ const Chart:React.FC<ChartProps> = ({ area, scores }) => {
     scales: {
       r: {
         grid: {
-          color: 'gray', // Grid line color (background lines)
-          lineWidth: 1, // Grid line width
+          color: 'gray',
+          lineWidth: 1,
         },
         pointLabels: {
           display: true,
@@ -58,10 +58,10 @@ const Chart:React.FC<ChartProps> = ({ area, scores }) => {
         position: "right" as LegendPosition,
         labels: {
           font: {
-            size: 18, // Font size for the legend labels
+            size: 18,
           },
           color: "gray",
-          boxWidth: 20, // Adjust the size of the color swatches (default is 40)
+          boxWidth: 20,
         },
       },
     },
