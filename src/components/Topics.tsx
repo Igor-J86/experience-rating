@@ -11,7 +11,7 @@ type TopicsProps = {
 
 const Topics = ({ scores, selectedArea, handleScore }:TopicsProps) => {
   return (
-    <div>
+    <div className="topics">
       {areas[selectedArea as keyof typeof areas].topics.map(
         (topic) => (
           <fieldset key={topic.id}>

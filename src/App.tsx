@@ -49,8 +49,8 @@ const App = () => {
   return (
     <div className="wrapper">
       <h1>Min kompetanse</h1>
-      <div className="container flex flex-dir-col gal">
-        <ul className="no-list-style flex flex-wrap">
+      <div className="container flex flex-wrap gal">
+        <ul className="no-list-style flex flex-wrap top-nav">
           {Object.keys(areas).map((area) => {
             return (
               <li key={area}>
@@ -72,15 +72,13 @@ const App = () => {
         </ul>
         {selectedArea && (
           <>
-            <div className="flex gam">
+            <div className="flex flex-1 gam">
               <Topics scores={scores} selectedArea={selectedArea} handleScore={handleScore} />
               <div className="container canvas">
                 <Chart area={selectedArea} scores={scores} />
               </div>
             </div>
-            <div className="container">
-              <Summary scores={scores} selectedArea={areas[selectedArea as keyof typeof areas].label} />
-            </div>
+            <Summary scores={scores} selectedArea={areas[selectedArea as keyof typeof areas].label} />
           </>
         )}
       </div>

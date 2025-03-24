@@ -15,17 +15,17 @@ const Summary = ({ scores, selectedArea }:SummaryProps) => {
   ))
   scoreAverage = scoreAverage / scores.length
   return (
-    <div className="summary">
+    <div className="summary flex-1">
       <h2>{selectedArea} summary</h2>
-      <div className="flex gal">
-        <dl>
+      <div className="columns-grid">
+        <dl className="columns-grid">
           {scores.map((topic) => (
             <div className="flex gas" key={topic.name}>
               <dt>{topic.label}</dt> <dd>{topic.score}</dd>
             </div>
           ))}
         </dl>
-      {scoreAverage !== 0 &&
+      {scoreAverage &&
         <div className="average">
           <h3>Snitt:</h3>
           <span>
