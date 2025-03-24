@@ -1,5 +1,6 @@
-export const areas = {
-  frontend: {
+export const areas = [
+  {
+    id: "frontend",
     label: "Frontend",
     topics: [
       {
@@ -44,7 +45,8 @@ export const areas = {
       }
     ],
   },
-  app: {
+  {
+    id: "app",
     label: "App",
     topics: [
       {
@@ -89,7 +91,8 @@ export const areas = {
       }
     ]
   },
-  backend: {
+  {
+    id: "backend",
     label: "Backend",
     topics: [
       {
@@ -134,7 +137,8 @@ export const areas = {
       }
     ]
   },
-  platform: {
+  {
+    id: "platform",
     label: "Plattform",
     topics: [
       {
@@ -187,7 +191,7 @@ export const areas = {
       },
     ]
   },
-}
+]
 
 export const colors = [
   'hsla(0, 100%, 50%, 0.5)',   // Red

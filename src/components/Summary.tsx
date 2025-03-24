@@ -14,9 +14,10 @@ const Summary = ({ scores, selectedArea }:SummaryProps) => {
     scoreAverage = scoreAverage + topic.score
   ))
   scoreAverage = scoreAverage / scores.length
+
   return (
     <div className="summary flex-1">
-      <h2>{selectedArea} summary</h2>
+      <h2>{selectedArea} oppsummering</h2>
       <div className="columns-grid">
         <dl className="columns-grid">
           {scores.map((topic) => (
@@ -25,11 +26,11 @@ const Summary = ({ scores, selectedArea }:SummaryProps) => {
             </div>
           ))}
         </dl>
-      {scoreAverage &&
+      {!isNaN(scoreAverage) && scoreAverage && 
         <div className="average">
           <h3>Snitt:</h3>
           <span>
-            {scoreAverage}
+            {scoreAverage.toFixed(2)}
           </span>
         </div>
       }

@@ -16,17 +16,18 @@ type ChartProps = {
     name: string
     score: number
   }[]
+  isSuperior: boolean
 }
 
 type LegendPosition = "top" | "left" | "bottom" | "right";
 
-const Chart:React.FC<ChartProps> = ({ area, scores }) => {
-  const areasData = areas[area as keyof typeof areas];
+const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior }) => {
+  const areasData = areas.find((a) => a.id === area);
 
   if (!areasData) {
     return <div>Invalid area selected</div>;
   }
-  
+
   const config = {
     responsive: true,
     maintainAspectRatio: false,
@@ -47,7 +48,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores }) => {
         min: 0,
         max: 5,
         ticks: {
-          precision: 0,
+          precision: isSuperior ? 2 : 0,
           font: {
             size: 18
           },
