@@ -20,7 +20,7 @@ const App = () => {
         ? prevScore.map((item) =>
             item.name === topicId ? { ...item, score } : item
           )
-        : [...prevScore, { name: topicId, label: existingItem!.label ?? "", score }];
+        : [...prevScore, { name: topicId, label: existingItem!.label, score }];
       });
     };
 
