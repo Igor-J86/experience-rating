@@ -116,6 +116,13 @@ fieldset {
       border-bottom: 1px solid var(--lighter-gray);
     }
   }
+  .average {
+    margin: auto;
+    text-align: center;
+    span {
+      font-size: 4rem;
+    }
+  }
 }
 
 .wrapper {
