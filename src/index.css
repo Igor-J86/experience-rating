@@ -62,6 +62,7 @@ button {
   font-family: inherit;
   background-color: var(--darker-gray);
   transition: border-color 0.25s;
+  white-space: nowrap;
 }
 button:hover {
   border-color: #646cff;

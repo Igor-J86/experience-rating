@@ -145,7 +145,7 @@ const App = () => {
                 setIsSuperiorTotal(false)
                 }
               }>
-                {isSuperior ? "Individ" : "Overordnet"}
+                {isSuperior ? "Individuell" : "Overordnet"}
               </button>
               {isSuperior &&
                 <button onClick={() => {

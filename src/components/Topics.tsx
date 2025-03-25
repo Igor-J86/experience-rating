@@ -62,13 +62,13 @@ const Topics = ({
         )
       })}
       {isSuperior &&
-        <div className="flex gam mtl">
+        <div className="flex flex-dir-col gam mtl">
           <button onClick={updateScores}>
             Beregn temasnitt
           </button>
           {!isSuperiorTotal &&
-            <button className="mtl" onClick={resetScores}>
-              Nullstill temasnitt
+            <button onClick={resetScores}>
+              Nullstill områdesnitt
             </button>
           }
         </div>
