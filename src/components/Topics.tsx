@@ -58,14 +58,16 @@ const Topics = ({
           </fieldset>
         )
       })}
-      <div className="flex gam">
-        <button onClick={updateScores}>
-          Se snitt
-        </button> 
-        <button onClick={updateScores}>
-          Nullstill
-        </button> 
-      </div>
+      {isSuperior &&
+        <div className="flex gam">
+          <button onClick={updateScores}>
+            Se snitt
+          </button> 
+          <button onClick={updateScores}>
+            Nullstill
+          </button> 
+        </div>
+      }
     </div>
   );
 };
