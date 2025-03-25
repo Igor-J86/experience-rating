@@ -145,6 +145,7 @@ const App = () => {
                 handleScore={handleScore}
                 handleInputChange={(e) => handleInputChange(e)}
                 updateScores={updateScores}
+                resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))}
                 inputs={inputs}
               />
               <div className="container canvas">

@@ -5,6 +5,7 @@ type TopicsProps = {
   handleScore: React.ChangeEventHandler<HTMLInputElement>;
   handleInputChange: React.ChangeEventHandler<HTMLInputElement>;
   updateScores: () => void
+  resetScores: () => void
   scores: {
     name: string;
     score: number;
@@ -20,6 +21,7 @@ const Topics = ({
   handleInputChange,
   isSuperior,
   updateScores,
+  resetScores,
   inputs
 }: TopicsProps) => {
   console.log(inputs)
@@ -59,11 +61,11 @@ const Topics = ({
         )
       })}
       {isSuperior &&
-        <div className="flex gam">
+        <div className="flex gam mtl">
           <button onClick={updateScores}>
             Se snitt
           </button> 
-          <button onClick={updateScores}>
+          <button onClick={resetScores}>
             Nullstill
           </button> 
         </div>

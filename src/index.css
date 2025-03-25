@@ -197,6 +197,10 @@ fieldset {
   gap: 1.5rem;
 }
 
+.mtl {
+  margin-top: 2rem;
+}
+
 .w100p {
   width: 100%;
 }
