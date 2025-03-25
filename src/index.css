@@ -87,6 +87,7 @@ button:focus-visible {
 input[type="number"] {
   padding: 0.5rem 0.2rem 0.5rem 1rem;
   max-width: 5rem;
+  width: 100%;
 }
 
 fieldset {

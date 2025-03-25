@@ -11,38 +11,38 @@ const App = () => {
     { name: string; label: string; score: number }[]
   >([]);
   const [averageScores, setAverageScores] = useState<
-    { name: string; label: string, score: number }[]
+    { name: string; label: string; score: number }[]
   >([]);
   const [isSuperior, setIsSuperior] = useState<boolean>(false);
-  const [inputs, setInputs] = useState<Array<{[key: string]: string}>>([]);
+  const [inputs, setInputs] = useState<{ [key: string]: string }>({});
 
-    // Handles input changes
-    const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setInputs({ ...inputs, [e.currentTarget.name]: e.currentTarget.value });
-    };
+  // Handles input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputs({ ...inputs, [e.currentTarget.name]: e.currentTarget.value });
+  };
 
-    // Handles score update when clicking "Update Scores"
-    const updateScores = () => {
-        const updatedItems = averageScores.map(item => {
-            const inputValue = parseFloat(inputs[item.name]); // Get input value
-            if (!isNaN(inputValue)) {
-                return {
-                    ...item,
-                    score: (item.score + inputValue) / 2 // Average calculation
-                };
-            }
-            return item;
-        });
+  // Handles score update when clicking "Update Scores"
+  const updateScores = () => {
+    const updatedItems = averageScores.map((item) => {
+      const inputValue = parseFloat(inputs[item.name]); // Get input value
+      if (!isNaN(inputValue)) {
+        return {
+          ...item,
+          score: (item.score + inputValue) / 2, // Average calculation
+        };
+      }
+      return item;
+    });
 
-        setAverageScores(updatedItems);
-        setInputs([]); // Reset input fields after updating
-    };
+    setAverageScores(updatedItems);
+    setInputs({}); // Reset input fields after updating
+  };
 
   const handleScore = (e: React.ChangeEvent<HTMLInputElement>) => {
     const topicId = e.currentTarget.name;
     const score = +e.currentTarget.value;
 
-    if (score > 5 || score <= 0) return 
+    if (score > 5 || score <= 0) return;
 
     setScores((prevScore) => {
       const existingItem = prevScore.find((item) => item.name === topicId);
@@ -56,50 +56,62 @@ const App = () => {
   };
 
   useEffect(() => {
-    const getFromLocal = loadLocal(`posten-kompetanse-${selectedArea}${isSuperior ? '-SU' : ''}`);
+    const getFromLocal = loadLocal(
+      `posten-kompetanse-${selectedArea}${isSuperior ? "-SU" : ""}`
+    );
     if (getFromLocal) {
       const localData = JSON.parse(getFromLocal);
       setScores(localData);
       if (isSuperior) {
-        setAverageScores(localData)
+        setAverageScores(localData);
       }
     } else {
-      if(isSuperior) {
+      if (isSuperior) {
         setAverageScores(
-          areas.find((area) => area.id === selectedArea)?.topics.map((topic) => ({
-            name: topic.id,
-            label: topic.label,
-            score: 1,
-          })) || []
-        )
+          areas
+            .find((area) => area.id === selectedArea)
+            ?.topics.map((topic) => ({
+              name: topic.id,
+              label: topic.label,
+              score: 1,
+            })) || []
+        );
       } else {
         setScores(
-          areas.find((area) => area.id === selectedArea)?.topics.map((topic) => ({
-            name: topic.id,
-            label: topic.label,
-            score: 3,
-          })) || []
-        )
+          areas
+            .find((area) => area.id === selectedArea)
+            ?.topics.map((topic) => ({
+              name: topic.id,
+              label: topic.label,
+              score: 3,
+            })) || []
+        );
       }
     }
   }, [selectedArea, isSuperior]);
 
   useEffect(() => {
-    if (selectedArea && scores.length > 0) {
-      saveLocal(`posten-kompetanse-${selectedArea}${isSuperior ? '-SU' : ''}`, JSON.stringify(scores));
+    if (isSuperior && selectedArea && averageScores.length > 0) {
+      saveLocal(
+        `posten-kompetanse-${selectedArea}-SU`,
+        JSON.stringify(averageScores)
+      );
+    } else if (selectedArea && scores.length > 0) {
+      saveLocal(
+        `posten-kompetanse-${selectedArea}`,
+        JSON.stringify(scores)
+      );
     }
-  }, [scores, selectedArea, isSuperior]);
+  }, [scores, selectedArea, isSuperior, averageScores]);
 
-  console.log(averageScores)
+  console.log(averageScores);
 
   return (
     <div className="wrapper">
       <h1>Min kompetanse</h1>
       <div className="container flex flex-wrap gal">
         <div className="flex flex-wrap gal justify-csb w100p">
-          {selectedArea &&
-            <div style={{ width: '6rem'}} />
-          }
+          {selectedArea && <div style={{ width: "6rem" }} />}
           <ul className="no-list-style top-nav">
             {areas.map((area) => {
               return (
@@ -117,11 +129,11 @@ const App = () => {
               );
             })}
           </ul>
-          {selectedArea &&
+          {selectedArea && (
             <button onClick={() => setIsSuperior(!isSuperior)}>
               {isSuperior ? "Individ" : "Overordnet"}
             </button>
-          }
+          )}
         </div>
         {selectedArea && (
           <>
@@ -136,12 +148,18 @@ const App = () => {
                 inputs={inputs}
               />
               <div className="container canvas">
-                <Chart area={selectedArea} scores={isSuperior ? averageScores : scores} isSuperior={isSuperior} />
+                <Chart
+                  area={selectedArea}
+                  scores={isSuperior ? averageScores : scores}
+                  isSuperior={isSuperior}
+                />
               </div>
             </div>
             <Summary
               scores={isSuperior ? averageScores : scores}
-              selectedArea={areas.find((area) => area.id === selectedArea)?.label || ''}
+              selectedArea={
+                areas.find((area) => area.id === selectedArea)?.label || ""
+              }
             />
           </>
         )}

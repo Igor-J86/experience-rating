@@ -22,7 +22,7 @@ const Summary = ({ scores, selectedArea }:SummaryProps) => {
         <dl className="columns-grid">
           {scores.map((topic) => (
             <div className="flex gas" key={topic.name}>
-              <dt>{topic.label}</dt> <dd>{topic.score}</dd>
+              <dt>{topic.label}</dt> <dd>{topic.score.toFixed(2)}</dd>
             </div>
           ))}
         </dl>

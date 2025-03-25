@@ -10,11 +10,7 @@ type TopicsProps = {
     score: number;
   }[];
   isSuperior: boolean
-  inputs: {[key: string]:{
-    id: string
-    label: string
-    score: number
-  }}
+  inputs: {[key: string]: string}
 };
 
 const Topics = ({
@@ -37,7 +33,7 @@ const Topics = ({
             <ul className="no-list-style justify-csb">
               {isSuperior
                 ? <li className="flex flex-1 justify-csb">
-                    <input type="number" min={1} max={5} onChange={handleInputChange} value={inputs[topic.id] || 1} name={topic.id} />
+                    <input type="number" min={1} max={5} onChange={handleInputChange} value={inputs[topic.id] || ''} name={topic.id} />
                   </li>
                 : Array.from({ length: 5 }, (_, index) => {
                     return (
@@ -62,9 +58,14 @@ const Topics = ({
           </fieldset>
         )
       })}
-      <button onClick={updateScores}>
-        Beregn snitt
-      </button> 
+      <div className="flex gam">
+        <button onClick={updateScores}>
+          Se snitt
+        </button> 
+        <button onClick={updateScores}>
+          Nullstill
+        </button> 
+      </div>
     </div>
   );
 };
