@@ -13,7 +13,11 @@ const App = () => {
   const [averageScores, setAverageScores] = useState<
     { name: string; label: string; score: number }[]
   >([]);
+  const [averageTotal, setAverageTotal] = useState<
+    { name: string; label: string; score: number }[]
+  >(areas.map((a) => ({ name: a.id, label: a.label, score: 1})));
   const [isSuperior, setIsSuperior] = useState<boolean>(false);
+  const [isSuperiorTotal, setIsSuperiorTotal] = useState<boolean>(false);
   const [inputs, setInputs] = useState<{ [key: string]: string }>({});
 
   // Handles input changes
@@ -21,7 +25,7 @@ const App = () => {
     setInputs({ ...inputs, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  // Handles score update when clicking "Update Scores"
+  // Calculate average scores per topic
   const updateScores = () => {
     const updatedItems = averageScores.map((item) => {
       const inputValue = parseFloat(inputs[item.name]); // Get input value
@@ -36,8 +40,10 @@ const App = () => {
 
     setAverageScores(updatedItems);
     setInputs({}); // Reset input fields after updating
+    setIsSuperiorTotal(false)
   };
 
+  // Set scores per topic
   const handleScore = (e: React.ChangeEvent<HTMLInputElement>) => {
     const topicId = e.currentTarget.name;
     const score = +e.currentTarget.value;
@@ -55,11 +61,12 @@ const App = () => {
     });
   };
 
+  // Using the data from local storage
   useEffect(() => {
     const getFromLocal = loadLocal(
       `posten-kompetanse-${selectedArea}${isSuperior ? "-SU" : ""}`
     );
-    if (getFromLocal) {
+    if (getFromLocal && !isSuperiorTotal) {
       const localData = JSON.parse(getFromLocal);
       setScores(localData);
       if (isSuperior) {
@@ -88,78 +95,121 @@ const App = () => {
         );
       }
     }
-  }, [selectedArea, isSuperior]);
+  }, [selectedArea, isSuperior, isSuperiorTotal]);
 
+  // Storing in local storage
   useEffect(() => {
-    if (isSuperior && selectedArea && averageScores.length > 0) {
+    if (isSuperior && !isSuperiorTotal && selectedArea && averageScores.length > 0) {
       saveLocal(
         `posten-kompetanse-${selectedArea}-SU`,
         JSON.stringify(averageScores)
       );
-    } else if (selectedArea && scores.length > 0) {
+    } else if (selectedArea && !isSuperiorTotal && scores.length > 0) {
       saveLocal(
         `posten-kompetanse-${selectedArea}`,
         JSON.stringify(scores)
       );
     }
-  }, [scores, selectedArea, isSuperior, averageScores]);
+  }, [scores, selectedArea, isSuperior, isSuperiorTotal, averageScores]);
 
-  console.log(averageScores);
+  // Calculating the total areas average
+  const calculateTotalAverage = () => {
+    if (averageScores.length === 0) return; // Avoid unnecessary updates
+
+    const localSuperiorData = areas.map((a) => ({ area: a.id, label: a.label, data: JSON.parse(loadLocal(
+      `posten-kompetanse-${a.id}-SU`
+    ) as string)}))
+    
+    setAverageTotal(localSuperiorData.map((a) => {
+      if (!a.data || a.data.length === 0) {
+        return { name: a.area, label: a.label, score: 0 }
+      }
+      const totalScore = a.data.reduce((sum:number, item:{score:number}) => sum + (item.score || 0), 0)
+      const averageScore = totalScore / a.data.length
+
+      return { name: a.area, label: a.label, score: +averageScore.toFixed(2)}
+    }));
+  
+    setIsSuperiorTotal(true)
+  }
 
   return (
     <div className="wrapper">
       <h1>Min kompetanse</h1>
       <div className="container flex flex-wrap gal">
         <div className="flex flex-wrap gal justify-csb w100p">
-          {selectedArea && <div style={{ width: "6rem" }} />}
-          <ul className="no-list-style top-nav">
-            {areas.map((area) => {
-              return (
-                <li key={area.id}>
-                  <button
-                    value={area.id}
-                    disabled={area.id === selectedArea}
-                    onClick={(e) => {
-                      setSelectedArea(e.currentTarget.value);
-                    }}
-                  >
-                    {area.label}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
           {selectedArea && (
-            <button onClick={() => setIsSuperior(!isSuperior)}>
-              {isSuperior ? "Individ" : "Overordnet"}
-            </button>
+            <div className="flex gam">
+              <button onClick={() => {
+                setIsSuperior(!isSuperior)
+                setIsSuperiorTotal(false)
+                }
+              }>
+                {isSuperior ? "Individ" : "Overordnet"}
+              </button>
+              {isSuperior &&
+                <button onClick={() => {
+                  calculateTotalAverage()
+                  setIsSuperiorTotal(!isSuperiorTotal)
+                  }}
+                >
+                  {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
+                </button>
+              }
+            </div>
           )}
+          {!isSuperiorTotal &&
+            <>
+              <ul className="no-list-style top-nav">
+                {areas.map((area) => {
+                  return (
+                    <li key={area.id}>
+                      <button
+                        value={area.id}
+                        disabled={area.id === selectedArea}
+                        onClick={(e) => {
+                          setSelectedArea(e.currentTarget.value);
+                        }}
+                        >
+                        {area.label}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              {selectedArea && <div style={{ width: "5rem" }} />}
+            </>
+          }
         </div>
         {selectedArea && (
           <>
             <div className="flex flex-1 gam">
-              <Topics
-                isSuperior={isSuperior}
-                scores={scores}
-                selectedArea={selectedArea}
-                handleScore={handleScore}
-                handleInputChange={(e) => handleInputChange(e)}
-                updateScores={updateScores}
-                resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))}
-                inputs={inputs}
-              />
+              {!isSuperiorTotal &&
+                <Topics
+                  isSuperior={isSuperior}
+                  isSuperiorTotal={isSuperiorTotal}
+                  scores={scores}
+                  selectedArea={selectedArea}
+                  handleScore={handleScore}
+                  handleInputChange={(e) => handleInputChange(e)}
+                  updateScores={updateScores}
+                  resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))}
+                  inputs={inputs}
+                />
+              }
               <div className="container canvas">
                 <Chart
                   area={selectedArea}
-                  scores={isSuperior ? averageScores : scores}
+                  scores={isSuperior && isSuperiorTotal ? averageTotal : isSuperior ? averageScores : scores}
                   isSuperior={isSuperior}
+                  isSuperiorTotal={isSuperiorTotal}
                 />
               </div>
             </div>
             <Summary
-              scores={isSuperior ? averageScores : scores}
+              scores={isSuperior && isSuperiorTotal ? averageTotal : isSuperior ? averageScores : scores}
               selectedArea={
-                areas.find((area) => area.id === selectedArea)?.label || ""
+                isSuperior && isSuperiorTotal ? 'Områder' : areas.find((area) => area.id === selectedArea)?.label || ""
               }
             />
           </>

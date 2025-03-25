@@ -11,6 +11,7 @@ type TopicsProps = {
     score: number;
   }[];
   isSuperior: boolean
+  isSuperiorTotal: boolean
   inputs: {[key: string]: string}
 };
 
@@ -20,11 +21,11 @@ const Topics = ({
   handleScore,
   handleInputChange,
   isSuperior,
+  isSuperiorTotal,
   updateScores,
   resetScores,
   inputs
 }: TopicsProps) => {
-  console.log(inputs)
   return (
     <div className="topics">
       {areas.find((area) => area.id === selectedArea)?.topics.map((topic) => {
@@ -63,11 +64,13 @@ const Topics = ({
       {isSuperior &&
         <div className="flex gam mtl">
           <button onClick={updateScores}>
-            Se snitt
-          </button> 
-          <button onClick={resetScores}>
-            Nullstill
-          </button> 
+            Beregn temasnitt
+          </button>
+          {!isSuperiorTotal &&
+            <button className="mtl" onClick={resetScores}>
+              Nullstill temasnitt
+            </button>
+          }
         </div>
       }
     </div>

@@ -14,14 +14,16 @@ type ChartProps = {
   area: string
   scores: {
     name: string
+    label: string
     score: number
   }[]
   isSuperior: boolean
+  isSuperiorTotal: boolean
 }
 
 type LegendPosition = "top" | "left" | "bottom" | "right";
 
-const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior }) => {
+const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior, isSuperiorTotal }) => {
   const areasData = areas.find((a) => a.id === area);
 
   if (!areasData) {
@@ -71,7 +73,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior }) => {
   };
 
   const data = {
-    labels: areasData.topics.map((topic) => (topic.label)),
+    labels: isSuperiorTotal ? scores.map((s) => (s.label)) : areasData.topics.map((topic) => (topic.label)),
     datasets: [
       {
         label: ' Vurdering',
