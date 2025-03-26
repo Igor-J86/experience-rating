@@ -22,7 +22,7 @@ const PdfDocument = async (area:string) => {
 
   const pdf = new jsPDF('landscape', 'mm', 'a4'); // Set landscape mode
   const width = pdf.internal.pageSize.getWidth();
-  const height = pdf.internal.pageSize.getHeight() - 40;
+  const height = pdf.internal.pageSize.getHeight();
 
   pdf.addImage(imgData, 'PNG', 0, 0, width, height); // Fit to page
   pdf.save(`${area}_summary.pdf`);
