@@ -162,7 +162,7 @@ const App = () => {
         </div>
         {selectedArea && (
           <>
-            <div className="flex flex-1 gam">
+            <div className={`flex flex-1 gam${isSuperiorTotal ? ' mtxl' : ''}`}>
               <Topics
                 isSuperior={isSuperior}
                 isSuperiorTotal={isSuperiorTotal}
