@@ -33,7 +33,7 @@ const Topics = ({
   calculateTotalAverage
 }: TopicsProps) => {
   return (
-    <div className="topics">
+    <div className="topics flex flex-dir-col gam">
       {selectedArea && (
         <div className="flex gam">
           <button onClick={() => {
@@ -54,6 +54,7 @@ const Topics = ({
           }
         </div>
       )}
+      <div>
       {!isSuperiorTotal && areas.find((area) => area.id === selectedArea)?.topics.map((topic) => {
         const score = scores.find((score) => score.name === topic.id);
         return (
@@ -87,8 +88,9 @@ const Topics = ({
           </fieldset>
         )
       })}
+      </div>
       {isSuperior && !isSuperiorTotal &&
-        <div className="flex flex-dir-col gam mtl">
+        <div className="flex flex-dir-col gam">
           <button onClick={updateScores}>
             Beregn temasnitt
           </button>
