@@ -1,3 +1,4 @@
+import PdfDocument from "./PdfDocument"
 
 type SummaryProps = {
   selectedArea: string
@@ -21,7 +22,7 @@ const Summary = ({ scores, selectedArea }:SummaryProps) => {
       <div className="columns-grid">
         <dl className="columns-grid">
           {scores.map((topic) => (
-            <div className="flex gas" key={topic.name}>
+            <div className="flex gas align-ic" key={topic.name}>
               <dt>{topic.label}</dt> <dd>{topic.score.toFixed(2)}</dd>
             </div>
           ))}
@@ -29,9 +30,10 @@ const Summary = ({ scores, selectedArea }:SummaryProps) => {
       {!isNaN(scoreAverage) && scoreAverage && 
         <div className="average">
           <h3>Snitt:</h3>
-          <span>
+          <div>
             {scoreAverage.toFixed(2)}
-          </span>
+          </div>
+          <button onClick={() => PdfDocument(selectedArea)}>Last ned PDF</button>
         </div>
       }
       </div>

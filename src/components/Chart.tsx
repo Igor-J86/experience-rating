@@ -32,7 +32,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior, isSuperiorTotal 
 
   const config = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     scales: {
       r: {
         grid: {
