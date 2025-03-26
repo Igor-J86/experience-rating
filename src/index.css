@@ -155,7 +155,7 @@ fieldset {
 .no-list-style {
   display: flex;
   list-style: none;
-  gap: 1rem;
+  gap: 0.5rem;
 
   li:has(label) {
     display: flex;
