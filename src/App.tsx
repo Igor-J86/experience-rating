@@ -137,29 +137,9 @@ const App = () => {
     <div className="wrapper">
       <h1>Min kompetanse</h1>
       <div className="container flex flex-wrap gal">
-        <div className="flex flex-wrap gal justify-csb w100p">
-          {selectedArea && (
-            <div className="flex gam">
-              <button onClick={() => {
-                setIsSuperior(!isSuperior)
-                setIsSuperiorTotal(false)
-                }
-              }>
-                {isSuperior ? "Individuell" : "Overordnet"}
-              </button>
-              {isSuperior &&
-                <button onClick={() => {
-                  calculateTotalAverage()
-                  setIsSuperiorTotal(!isSuperiorTotal)
-                  }}
-                >
-                  {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
-                </button>
-              }
-            </div>
-          )}
+        <div className="flex flex-wrap gal justify-cc w100p">
           {!isSuperiorTotal &&
-            <>
+            <nav>
               <ul className="no-list-style top-nav">
                 {areas.map((area) => {
                   return (
@@ -177,26 +157,26 @@ const App = () => {
                   );
                 })}
               </ul>
-              {selectedArea && <div style={{ width: "5rem" }} />}
-            </>
+            </nav>
           }
         </div>
         {selectedArea && (
           <>
             <div className="flex flex-1 gam">
-              {!isSuperiorTotal &&
-                <Topics
-                  isSuperior={isSuperior}
-                  isSuperiorTotal={isSuperiorTotal}
-                  scores={scores}
-                  selectedArea={selectedArea}
-                  handleScore={handleScore}
-                  handleInputChange={(e) => handleInputChange(e)}
-                  updateScores={updateScores}
-                  resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))}
-                  inputs={inputs}
-                />
-              }
+              <Topics
+                isSuperior={isSuperior}
+                isSuperiorTotal={isSuperiorTotal}
+                scores={scores}
+                selectedArea={selectedArea}
+                calculateTotalAverage={calculateTotalAverage}
+                handleScore={handleScore}
+                handleInputChange={(e) => handleInputChange(e)}
+                setIsSuperior={(e) => setIsSuperior(e)}
+                setIsSuperiorTotal={(e) => setIsSuperiorTotal(e)}
+                updateScores={updateScores}
+                resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))}
+                inputs={inputs}
+              />
               <div className="container canvas">
                 <Chart
                   area={selectedArea}

@@ -13,6 +13,9 @@ type TopicsProps = {
   isSuperior: boolean
   isSuperiorTotal: boolean
   inputs: {[key: string]: string}
+  calculateTotalAverage: () => void
+  setIsSuperior: React.Dispatch<React.SetStateAction<boolean>>
+  setIsSuperiorTotal: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 const Topics = ({
@@ -24,11 +27,34 @@ const Topics = ({
   isSuperiorTotal,
   updateScores,
   resetScores,
-  inputs
+  inputs,
+  setIsSuperior,
+  setIsSuperiorTotal,
+  calculateTotalAverage
 }: TopicsProps) => {
   return (
     <div className="topics">
-      {areas.find((area) => area.id === selectedArea)?.topics.map((topic) => {
+      {selectedArea && (
+        <div className="flex gam">
+          <button onClick={() => {
+            setIsSuperior(!isSuperior)
+            setIsSuperiorTotal(false)
+            }
+          }>
+            {isSuperior ? "Individuell" : "Overordnet"}
+          </button>
+          {isSuperior &&
+            <button onClick={() => {
+              calculateTotalAverage()
+              setIsSuperiorTotal(!isSuperiorTotal)
+              }}
+            >
+              {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
+            </button>
+          }
+        </div>
+      )}
+      {!isSuperiorTotal && areas.find((area) => area.id === selectedArea)?.topics.map((topic) => {
         const score = scores.find((score) => score.name === topic.id);
         return (
           <fieldset key={topic.id}>
@@ -61,7 +87,7 @@ const Topics = ({
           </fieldset>
         )
       })}
-      {isSuperior &&
+      {isSuperior && !isSuperiorTotal &&
         <div className="flex flex-dir-col gam mtl">
           <button onClick={updateScores}>
             Beregn temasnitt
