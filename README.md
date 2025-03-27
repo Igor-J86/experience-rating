@@ -1,54 +1,33 @@
-# React + TypeScript + Vite
+# Experience rating
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This web app is for make ratings of different areas and topics, based on the data from the list in globals.ts.
 
-Currently, two official plugins are available:
+There are 3 modes available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Individual rating on each topic
+2. Add rating multiple times, and an average of the previously added ratings will be calculated on each topic
+3. Show the total average results of each area (calculation based on all the added scores on topics in previous step)
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React** - a beloved js framework
+- **TypeScript** - for robust code and proper type safety
+- **Vite** - for bundling and running a dev server
+- **chart.js** - a modern charting library
+- **react-chartjs-2** - providing React components for Chart.js
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Development
+
+Install dependencies:
+
+```sh
+npm i
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Run the dev server with Vite (supporting HMR):
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```sh
+npm start
 ```
+
+The web app is set up with a GitHub workflow (action) and automatically deployed to **Vercel** when changes are pushed to the `main` branch in GitHub.
