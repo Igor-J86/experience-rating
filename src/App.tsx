@@ -6,7 +6,7 @@ import Topics from "./components/Topics";
 import Summary from "./components/Summary";
 
 const App = () => {
-  const [selectedArea, setSelectedArea] = useState<string>("");
+  const [selectedArea, setSelectedArea] = useState<string>("frontend");
   const [scores, setScores] = useState<
     { name: string; label: string; score: number }[]
   >([]);
@@ -40,7 +40,6 @@ const App = () => {
 
     setAverageScores(updatedItems);
     setInputs({}); // Reset input fields after updating
-    setIsSuperiorTotal(false)
   };
 
   // Set scores per topic
@@ -129,8 +128,6 @@ const App = () => {
 
       return { name: a.area, label: a.label, score: +averageScore.toFixed(2)}
     }));
-  
-    setIsSuperiorTotal(true)
   }
 
   return (
@@ -138,7 +135,7 @@ const App = () => {
       <h1>Min kompetanse</h1>
       <div className="container flex flex-wrap gal">
         <div className="flex flex-wrap gal justify-cc w100p">
-          {!isSuperiorTotal &&
+          <div className="flex flex-wrap gam justify-csb w100p">
             <nav>
               <ul className="no-list-style top-nav">
                 {areas.map((area) => {
@@ -158,7 +155,14 @@ const App = () => {
                 })}
               </ul>
             </nav>
-          }
+            <button className="justify-sfe" onClick={() => {
+              calculateTotalAverage()
+              setIsSuperiorTotal(!isSuperiorTotal)
+              }}
+            >
+              {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
+            </button>
+          </div>
         </div>
         {selectedArea && (
           <>
@@ -168,7 +172,6 @@ const App = () => {
                 isSuperiorTotal={isSuperiorTotal}
                 scores={scores}
                 selectedArea={selectedArea}
-                calculateTotalAverage={calculateTotalAverage}
                 handleScore={handleScore}
                 handleInputChange={(e) => handleInputChange(e)}
                 setIsSuperior={(e) => setIsSuperior(e)}
@@ -180,16 +183,16 @@ const App = () => {
               <div className="container canvas">
                 <Chart
                   area={selectedArea}
-                  scores={isSuperior && isSuperiorTotal ? averageTotal : isSuperior ? averageScores : scores}
+                  scores={isSuperiorTotal ? averageTotal : isSuperior ? averageScores : scores}
                   isSuperior={isSuperior}
                   isSuperiorTotal={isSuperiorTotal}
                 />
               </div>
             </div>
             <Summary
-              scores={isSuperior && isSuperiorTotal ? averageTotal : isSuperior ? averageScores : scores}
+              scores={isSuperiorTotal ? averageTotal : isSuperior ? averageScores : scores}
               selectedArea={
-                isSuperior && isSuperiorTotal ? 'Områder' : areas.find((area) => area.id === selectedArea)?.label || ""
+                isSuperiorTotal ? 'Områder' : areas.find((area) => area.id === selectedArea)?.label || ""
               }
             />
           </>

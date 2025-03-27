@@ -214,6 +214,10 @@ fieldset {
   width: 100%;
 }
 
+.justify-sfe {
+  justify-self: flex-end;
+}
+
 .justify-csb {
   justify-content: space-between;
 }
