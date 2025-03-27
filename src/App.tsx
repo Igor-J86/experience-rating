@@ -32,7 +32,7 @@ const App = () => {
       if (!isNaN(inputValue)) {
         return {
           ...item,
-          score: (item.score + inputValue) / 2, // Average calculation
+          score: inputValue <= 0 || inputValue > 5 ? item.score : (item.score + inputValue) / 2, // Average calculation
         };
       }
       return item;
