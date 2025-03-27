@@ -1,4 +1,4 @@
-import PdfDocument from "./PdfDocument"
+import { PdfDocument } from "../utils/helpers"
 
 type SummaryProps = {
   selectedArea: string

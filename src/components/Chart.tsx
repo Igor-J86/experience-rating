@@ -43,7 +43,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior, isSuperiorTotal 
           display: true,
           centerPointLabels: true,
           font: {
-            size: 18
+            size: 14
           },
           color: "gray"
         },
@@ -52,7 +52,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior, isSuperiorTotal 
         ticks: {
           precision: isSuperior ? 2 : 0,
           font: {
-            size: 18
+            size: 14
           },
           color: 'black'
         },
@@ -63,10 +63,10 @@ const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior, isSuperiorTotal 
         position: "right" as LegendPosition,
         labels: {
           font: {
-            size: 18,
+            size: 16,
           },
           color: "gray",
-          boxWidth: 20,
+          boxWidth: 18,
         },
       },
     },

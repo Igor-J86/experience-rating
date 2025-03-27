@@ -134,7 +134,7 @@ const App = () => {
   }
 
   return (
-    <div className="wrapper">
+    <>
       <h1>Min kompetanse</h1>
       <div className="container flex flex-wrap gal">
         <div className="flex flex-wrap gal justify-cc w100p">
@@ -195,7 +195,7 @@ const App = () => {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
