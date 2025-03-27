@@ -9,10 +9,22 @@ const App = () => {
   const [selectedArea, setSelectedArea] = useState<string>("frontend");
   const [scores, setScores] = useState<
     { name: string; label: string; score: number }[]
-  >([]);
+  >(areas
+    .find((area) => area.id === selectedArea)
+    ?.topics.map((topic) => ({
+      name: topic.id,
+      label: topic.label,
+      score: 3,
+    })) || []);
   const [averageScores, setAverageScores] = useState<
     { name: string; label: string; score: number }[]
-  >([]);
+  >(areas
+    .find((area) => area.id === selectedArea)
+    ?.topics.map((topic) => ({
+      name: topic.id,
+      label: topic.label,
+      score: 1,
+    })) || []);
   const [averageTotal, setAverageTotal] = useState<
     { name: string; label: string; score: number }[]
   >(areas.map((a) => ({ name: a.id, label: a.label, score: 1})));
@@ -70,28 +82,6 @@ const App = () => {
       setScores(localData);
       if (isSuperior) {
         setAverageScores(localData);
-      }
-    } else {
-      if (isSuperior) {
-        setAverageScores(
-          areas
-            .find((area) => area.id === selectedArea)
-            ?.topics.map((topic) => ({
-              name: topic.id,
-              label: topic.label,
-              score: 1,
-            })) || []
-        );
-      } else {
-        setScores(
-          areas
-            .find((area) => area.id === selectedArea)
-            ?.topics.map((topic) => ({
-              name: topic.id,
-              label: topic.label,
-              score: 3,
-            })) || []
-        );
       }
     }
   }, [selectedArea, isSuperior, isSuperiorTotal]);
