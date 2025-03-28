@@ -125,26 +125,28 @@ const App = () => {
       <h1>Min kompetanse</h1>
       <div className="container flex flex-wrap gal">
         <div className="flex flex-wrap gam justify-csb w100p">
-          <nav>
-            <ul className="no-list-style top-nav">
-              {areas.map((area) => {
-                return (
-                  <li key={area.id}>
-                    <button
-                      value={area.id}
-                      disabled={area.id === selectedArea}
-                      onClick={(e) => {
-                        setSelectedArea(e.currentTarget.value);
-                      }}
-                      >
-                      {area.label}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-          <button className="justify-sfe" onClick={() => {
+          {!isSuperiorTotal &&
+            <nav>
+              <ul className="no-list-style top-nav">
+                {areas.map((area) => {
+                  return (
+                    <li key={area.id}>
+                      <button
+                        value={area.id}
+                        disabled={area.id === selectedArea}
+                        onClick={(e) => {
+                          setSelectedArea(e.currentTarget.value);
+                        }}
+                        >
+                        {area.label}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          }
+          <button className="mla" onClick={() => {
             calculateTotalAverage()
             setIsSuperiorTotal(!isSuperiorTotal)
             }}

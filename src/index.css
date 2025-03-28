@@ -207,16 +207,16 @@ fieldset {
   margin-top: 2rem;
 }
 
+.mla {
+  margin-left: auto;
+}
+
 .mtxl {
   margin-top: 2.5rem;
 }
 
 .w100p {
   width: 100%;
-}
-
-.justify-sfe {
-  justify-self: flex-end;
 }
 
 .justify-csb {
