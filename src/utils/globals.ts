@@ -25,7 +25,7 @@ export const areas = [
       },
       {
         id: 'quality-process-framework',
-        label: 'Kvalitet/Prosess/Rammeverk'
+        label: 'Kvalitet/Prosess'
       },
       {
         id: 'business',
@@ -71,7 +71,7 @@ export const areas = [
       },
       {
         id: 'quality-process-framework',
-        label: 'Kvalitet/Prosess/Rammeverk'
+        label: 'Kvalitet/Prosess'
       },
       {
         id: 'business',
@@ -117,7 +117,7 @@ export const areas = [
       },
       {
         id: 'quality-process-framework',
-        label: 'Kvalitet/Prosess/Rammeverk'
+        label: 'Kvalitet/Prosess'
       },
       {
         id: 'business',
@@ -163,7 +163,7 @@ export const areas = [
       },
       {
         id: 'quality-process-framework',
-        label: 'Kvalitet/Prosess/Rammeverk'
+        label: 'Kvalitet/Prosess'
       },
       {
         id: 'business',

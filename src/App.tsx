@@ -170,7 +170,7 @@ const App = () => {
                 resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))}
                 inputs={inputs}
               />
-              <div className="container canvas">
+              <div className="container canvas flex-1">
                 <Chart
                   area={selectedArea}
                   scores={isSuperiorTotal ? averageTotal : isSuperior ? averageScores : scores}

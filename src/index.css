@@ -110,7 +110,7 @@ fieldset {
   display: grid;
   column-gap: 4rem;
   row-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   height: 100%;
 }
 
@@ -147,13 +147,17 @@ fieldset {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 128rem;
+  max-width: 110rem;
 }
 .container {
   width: 100%;
   max-width: 100vw;
   &.canvas {
     max-width: 60vw;
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
