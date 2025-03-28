@@ -173,7 +173,13 @@ const App = () => {
                 setIsSuperior={(e) => setIsSuperior(e)}
                 setIsSuperiorTotal={(e) => setIsSuperiorTotal(e)}
                 updateScores={updateScores}
-                resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 0})))}
+                resetScores={() => {
+                  if(isSuperior) {
+                    setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 0})))
+                  } else {
+                    setScores((prevScores) => prevScores.map((item) => ({...item, score: 3})))
+                  }
+                }}
                 inputs={inputs}
               />
               <div className="container canvas flex-1">

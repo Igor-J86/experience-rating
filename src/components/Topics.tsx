@@ -76,18 +76,18 @@ const Topics = ({
         )
       })}
       </div>
-      {isSuperior && !isSuperiorTotal &&
         <div className="flex flex-dir-col gam">
-          <button onClick={updateScores}>
-            Beregn områdesnitt
-          </button>
+          {isSuperior && !isSuperiorTotal &&
+            <button onClick={updateScores}>
+              Beregn områdesnitt
+            </button>
+          }
           {!isSuperiorTotal &&
             <button onClick={resetScores}>
-              Nullstill områdesnitt
+              Nullstill
             </button>
           }
         </div>
-      }
     </div>
   );
 };
