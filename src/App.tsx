@@ -9,22 +9,10 @@ const App = () => {
   const [selectedArea, setSelectedArea] = useState<string>("frontend");
   const [scores, setScores] = useState<
     { name: string; label: string; score: number }[]
-  >(areas
-    .find((area) => area.id === selectedArea)
-    ?.topics.map((topic) => ({
-      name: topic.id,
-      label: topic.label,
-      score: 3,
-    })) || []);
+  >([]);
   const [averageScores, setAverageScores] = useState<
     { name: string; label: string; score: number }[]
-  >(areas
-    .find((area) => area.id === selectedArea)
-    ?.topics.map((topic) => ({
-      name: topic.id,
-      label: topic.label,
-      score: 1,
-    })) || []);
+  >([]);
   const [averageTotal, setAverageTotal] = useState<
     { name: string; label: string; score: number }[]
   >(areas.map((a) => ({ name: a.id, label: a.label, score: 1})));
@@ -44,7 +32,7 @@ const App = () => {
       if (!isNaN(inputValue)) {
         return {
           ...item,
-          score: inputValue <= 0 || inputValue > 5 ? item.score : (item.score + inputValue) / 2, // Average calculation
+          score: inputValue <= 0 || inputValue > 5 ? item.score : item.score === 0 ? inputValue : ((item.score * (5 - 1)) + inputValue) / 5, // Average calculation
         };
       }
       return item;
@@ -83,6 +71,24 @@ const App = () => {
       if (isSuperior) {
         setAverageScores(localData);
       }
+    } else {
+      setScores(
+        areas
+        .find((area) => area.id === selectedArea)
+        ?.topics.map((topic) => ({
+          name: topic.id,
+          label: topic.label,
+          score: 3,
+        })) || []
+      )
+      setAverageScores(areas
+        .find((area) => area.id === selectedArea)
+        ?.topics.map((topic) => ({
+          name: topic.id,
+          label: topic.label,
+          score: 0,
+        })) || []
+      )
     }
   }, [selectedArea, isSuperior, isSuperiorTotal]);
 
@@ -167,7 +173,7 @@ const App = () => {
                 setIsSuperior={(e) => setIsSuperior(e)}
                 setIsSuperiorTotal={(e) => setIsSuperiorTotal(e)}
                 updateScores={updateScores}
-                resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))}
+                resetScores={() => setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 0})))}
                 inputs={inputs}
               />
               <div className="container canvas flex-1">
