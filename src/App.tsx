@@ -32,7 +32,7 @@ const App = () => {
       if (!isNaN(inputValue)) {
         return {
           ...item,
-          score: inputValue <= 0 || inputValue > 5 ? item.score : item.score === 0 ? inputValue : ((item.score * (5 - 1)) + inputValue) / 5, // Average calculation
+          score: inputValue <= 0 || inputValue > 5 ? item.score : item.score === 1 ? inputValue : (item.score + inputValue) / 2, // Average calculation
         };
       }
       return item;
@@ -86,7 +86,7 @@ const App = () => {
         ?.topics.map((topic) => ({
           name: topic.id,
           label: topic.label,
-          score: 0,
+          score: 1,
         })) || []
       )
     }
@@ -117,9 +117,9 @@ const App = () => {
     
     setAverageTotal(localSuperiorData.map((a) => {
       if (!a.data || a.data.length === 0) {
-        return { name: a.area, label: a.label, score: 0 }
+        return { name: a.area, label: a.label, score: 1 }
       }
-      const totalScore = a.data.reduce((sum:number, item:{score:number}) => sum + (item.score || 0), 0)
+      const totalScore = a.data.reduce((sum:number, item:{score:number}) => sum + (item.score || 1), 0)
       const averageScore = totalScore / a.data.length
 
       return { name: a.area, label: a.label, score: +averageScore.toFixed(2)}
@@ -152,13 +152,15 @@ const App = () => {
               </ul>
             </nav>
           }
-          <button className="mla" onClick={() => {
-            calculateTotalAverage()
-            setIsSuperiorTotal(!isSuperiorTotal)
-            }}
-          >
-            {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
-          </button>
+          {isSuperior &&
+            <button className="mla" onClick={() => {
+              calculateTotalAverage()
+              setIsSuperiorTotal(!isSuperiorTotal)
+              }}
+            >
+              {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
+            </button>
+          }
         </div>
         {selectedArea && (
           <>
@@ -175,7 +177,7 @@ const App = () => {
                 updateScores={updateScores}
                 resetScores={() => {
                   if(isSuperior) {
-                    setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 0})))
+                    setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))
                   } else {
                     setScores((prevScores) => prevScores.map((item) => ({...item, score: 3})))
                   }
