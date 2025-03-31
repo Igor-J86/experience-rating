@@ -121,7 +121,7 @@ const App = () => {
       if (!a.data || a.data.length === 0) {
         return { name: a.area, label: a.label, score: 1 }
       }
-      const totalScore = a.data.reduce((sum:number, item:{score:number}) => sum + (item.score || 1), 0)
+      const totalScore = a.data.reduce((sum:number, item:{score:number}) => sum + (item.score || 0), 0)
       const averageScore = totalScore / a.data.length
 
       return { name: a.area, label: a.label, score: +averageScore.toFixed(2)}

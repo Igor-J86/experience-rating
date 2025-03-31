@@ -9,6 +9,10 @@ export const loadLocal = (name:string) => {
   return localStorage.getItem(name)
 }
 
+export const removeLocal = (name:string) => {
+  return localStorage.removeItem(name)
+}
+
 export const setQueryParam = (queryName:string, value:string) => {
   const searchParams = new URLSearchParams(location.search);
   // Update url with query param
