@@ -13,8 +13,6 @@ type TopicsProps = {
   isSuperior: boolean
   isSuperiorTotal: boolean
   inputs: {[key: string]: string}
-  setIsSuperior: React.Dispatch<React.SetStateAction<boolean>>
-  setIsSuperiorTotal: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 const Topics = ({
@@ -27,20 +25,9 @@ const Topics = ({
   updateScores,
   resetScores,
   inputs,
-  setIsSuperior,
-  setIsSuperiorTotal,
 }: TopicsProps) => {
   return (
     <div className="topics flex flex-dir-col gam">
-      {selectedArea && !isSuperiorTotal && (
-        <button onClick={() => {
-          setIsSuperior(!isSuperior)
-          setIsSuperiorTotal(false)
-          }
-        }>
-          {isSuperior ? "Individuell" : "Overordnet"}
-        </button>
-      )}
       <div>
       {!isSuperiorTotal && areas.find((area) => area.id === selectedArea)?.topics.map((topic) => {
         const score = scores.find((score) => score.name === topic.id);

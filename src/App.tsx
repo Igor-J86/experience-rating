@@ -154,15 +154,26 @@ const App = () => {
               </ul>
             </nav>
           }
-          {isSuperior &&
-            <button className="mla" onClick={() => {
-              calculateTotalAverage()
-              setIsSuperiorTotal(!isSuperiorTotal)
-              }}
-            >
-              {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
-            </button>
-          }
+          <div className="mla flex gam">
+            {selectedArea && !isSuperiorTotal && (
+              <button className="mla" onClick={() => {
+                setIsSuperior(!isSuperior)
+                setIsSuperiorTotal(false)
+                }
+              }>
+                {isSuperior ? "Individuell" : "Overordnet"}
+              </button>
+            )}
+            {isSuperior &&
+              <button className="mla" onClick={() => {
+                calculateTotalAverage()
+                setIsSuperiorTotal(!isSuperiorTotal)
+                }}
+              >
+                {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
+              </button>
+            }
+          </div>
         </div>
         {selectedArea && (
           <>
@@ -174,8 +185,6 @@ const App = () => {
                 selectedArea={selectedArea}
                 handleScore={handleScore}
                 handleInputChange={(e) => handleInputChange(e)}
-                setIsSuperior={(e) => setIsSuperior(e)}
-                setIsSuperiorTotal={(e) => setIsSuperiorTotal(e)}
                 updateScores={updateScores}
                 resetScores={() => {
                   if(isSuperior) {
