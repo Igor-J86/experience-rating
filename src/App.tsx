@@ -11,7 +11,7 @@ const App = () => {
     { name: string; label: string; score: number }[]
   >([]);
   const [averageScores, setAverageScores] = useState<
-    { name: string; label: string; score: number }[]
+    { name: string; label: string; score: number, count: number }[]
   >([]);
   const [averageTotal, setAverageTotal] = useState<
     { name: string; label: string; score: number }[]
@@ -32,7 +32,8 @@ const App = () => {
       if (!isNaN(inputValue)) {
         return {
           ...item,
-          score: inputValue <= 0 || inputValue > 5 ? item.score : item.score === 1 ? inputValue : (item.score + inputValue) / 2, // Average calculation
+          score: inputValue <= 0 || inputValue > 5 ? item.score : item.score === 1 ? inputValue : item.score + (inputValue - item.score) / (item.count + 1), // Average calculation
+          count: inputValue <= 0 || inputValue > 5 ? item.count : item.count + 1,
         };
       }
       return item;
@@ -87,6 +88,7 @@ const App = () => {
           name: topic.id,
           label: topic.label,
           score: 1,
+          count: 0
         })) || []
       )
     }
@@ -177,7 +179,7 @@ const App = () => {
                 updateScores={updateScores}
                 resetScores={() => {
                   if(isSuperior) {
-                    setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1})))
+                    setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1, count: 0})))
                   } else {
                     setScores((prevScores) => prevScores.map((item) => ({...item, score: 3})))
                   }
