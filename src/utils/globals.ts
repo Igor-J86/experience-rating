@@ -17,7 +17,7 @@ export const areas = [
       {
         id: 'debugging',
         label: 'Debugging',
-        color: 'hsla(40, 100%, 50%, 0.7)'
+        color: 'hsla(50, 100%, 50%, 0.6)'
       },
       {
         id: 'programming',
@@ -74,7 +74,7 @@ export const areas = [
       {
         id: 'debugging',
         label: 'Debugging',
-        color: 'hsla(40, 100%, 50%, 0.7)'
+        color: 'hsla(50, 100%, 50%, 0.6)'
       },
       {
         id: 'programming',
@@ -131,7 +131,7 @@ export const areas = [
       {
         id: 'debugging',
         label: 'Debugging',
-        color: 'hsla(40, 100%, 50%, 0.7)'
+        color: 'hsla(50, 100%, 50%, 0.6)'
       },
       {
         id: 'programming',
@@ -171,7 +171,7 @@ export const areas = [
       {
         id: 'database',
         label: 'Database',
-        color: 'hsla(85, 100%, 50%, 0.5)'
+        color: 'hsla(30, 100%, 50%, 0.7)'
       },
     ]
   },
@@ -193,7 +193,7 @@ export const areas = [
       {
         id: 'debugging',
         label: 'Debugging',
-        color: 'hsla(40, 100%, 50%, 0.7)'
+        color: 'hsla(50, 100%, 50%, 0.6)'
       },
       {
         id: 'programming',
@@ -243,7 +243,7 @@ export const areas = [
       {
         id: 'database',
         label: 'Database',
-        color: 'hsla(85, 100%, 50%, 0.5)'
+        color: 'hsla(30, 100%, 50%, 0.7)'
       },
     ]
   },
