@@ -7,9 +7,10 @@ type SummaryProps = {
     label: string
     score: number
   }[]
+  isSuperior: boolean
 }
 
-const Summary = ({ scores, selectedArea }:SummaryProps) => {
+const Summary = ({ scores, selectedArea, isSuperior }:SummaryProps) => {
   let scoreAverage = 0
   scores.map((topic) => (
     scoreAverage = scoreAverage + topic.score
@@ -18,7 +19,7 @@ const Summary = ({ scores, selectedArea }:SummaryProps) => {
 
   return (
     <div className="summary flex-1">
-      <h2>{selectedArea} oppsummering</h2>
+      <h2>{selectedArea} {isSuperior ? 'oppsummering' : 'kompetanse'}</h2>
       <div className="columns-grid">
         <dl className="columns-grid">
           {scores.map((topic) => (

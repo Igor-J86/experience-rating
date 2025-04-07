@@ -2,208 +2,249 @@ export const areas = [
   {
     id: "frontend",
     label: "Frontend",
+    color: 'hsla(210, 100%, 50%, 0.5)',
     topics: [
       {
         id:'sharing-visibility',
-        label: 'Dele/Synlighet'
+        label: 'Dele/Synlighet',
+        color: 'hsla(15, 100%, 50%, 0.5)'
       },
       {
         id: 'ui-design',
-        label: 'UI/Design'
+        label: 'UI/Design',
+        color: 'hsla(300, 100%, 80%, 0.5)'
       },
       {
         id: 'debugging',
-        label: 'Debugging'
+        label: 'Debugging',
+        color: 'hsla(40, 100%, 50%, 0.7)'
       },
       {
         id: 'programming',
-        label: 'Programmering'
+        label: 'Programmering',
+        color: 'hsla(100, 0%, 70%, 0.5)'
       },
       {
         id: 'security',
-        label: 'Sikkerhet'
+        label: 'Sikkerhet',
+        color: 'hsla(120, 50%, 50%, 0.5)'
       },
       {
         id: 'quality-process-framework',
-        label: 'Kvalitet/Prosess'
+        label: 'Kvalitet/Prosess/Rammeverk',
+        color: 'hsla(210, 100%, 50%, 0.5)'
       },
       {
         id: 'business',
-        label: 'Forretning'
+        label: 'Forretning',
+        color: 'hsla(180, 60%, 50%, 0.5)'
       },
       {
         id: 'communication',
-        label: 'Kommunikasjon'
+        label: 'Kommunikasjon',
+        color: 'hsla(240, 100%, 50%, 0.5)'
       },
       {
         id: 'leadership',
-        label: 'Lede/Ta ansvar'
+        label: 'Lede/Ta ansvar',
+        color: 'hsla(270, 100%, 50%, 0.5)'
       },
       {
         id: 'learning',
-        label: 'Læring'
+        label: 'Læring',
+        color: 'hsla(300, 100%, 60%, 0.5)'
       }
     ],
   },
   {
     id: "app",
     label: "App",
+    color: 'hsla(15, 100%, 50%, 0.5)',
     topics: [
       {
         id:'sharing-visibility',
-        label: 'Dele/Synlighet'
+        label: 'Dele/Synlighet',
+        color: 'hsla(15, 100%, 50%, 0.5)'
       },
       {
         id: 'ui-design',
-        label: 'UI/Design'
+        label: 'UI/Design',
+        color: 'hsla(300, 100%, 80%, 0.5)'
       },
       {
         id: 'debugging',
-        label: 'Debugging'
+        label: 'Debugging',
+        color: 'hsla(40, 100%, 50%, 0.7)'
       },
       {
         id: 'programming',
-        label: 'Programmering'
+        label: 'Programmering',
+        color: 'hsla(100, 0%, 70%, 0.5)'
       },
       {
         id: 'security',
-        label: 'Sikkerhet'
+        label: 'Sikkerhet',
+        color: 'hsla(120, 50%, 50%, 0.5)'
       },
       {
         id: 'quality-process-framework',
-        label: 'Kvalitet/Prosess'
+        label: 'Kvalitet/Prosess/Rammeverk',
+        color: 'hsla(210, 100%, 50%, 0.5)'
       },
       {
         id: 'business',
-        label: 'Forretning'
+        label: 'Forretning',
+        color: 'hsla(180, 60%, 50%, 0.5)'
       },
       {
         id: 'communication',
-        label: 'Kommunikasjon'
+        label: 'Kommunikasjon',
+        color: 'hsla(240, 100%, 50%, 0.5)'
       },
       {
         id: 'leadership',
-        label: 'Lede/Ta ansvar'
+        label: 'Lede/Ta ansvar',
+        color: 'hsla(270, 100%, 50%, 0.5)'
       },
       {
         id: 'learning',
-        label: 'Læring'
+        label: 'Læring',
+        color: 'hsla(300, 100%, 60%, 0.5)'
       }
     ]
   },
   {
     id: "backend",
     label: "Backend",
+    color: 'hsla(120, 50%, 50%, 0.5)',
     topics: [
       {
         id:'sharing-visibility',
-        label: 'Dele/Synlighet'
+        label: 'Dele/Synlighet',
+        color: 'hsla(15, 100%, 50%, 0.5)'
       },
       {
         id: 'ui-design',
-        label: 'UI/Design'
+        label: 'UI/Design',
+        color: 'hsla(300, 100%, 80%, 0.5)'
       },
       {
         id: 'debugging',
-        label: 'Debugging'
+        label: 'Debugging',
+        color: 'hsla(40, 100%, 50%, 0.7)'
       },
       {
         id: 'programming',
-        label: 'Programmering'
+        label: 'Programmering',
+        color: 'hsla(100, 0%, 70%, 0.5)'
       },
       {
         id: 'security',
-        label: 'Sikkerhet'
+        label: 'Sikkerhet',
+        color: 'hsla(120, 50%, 50%, 0.5)'
       },
       {
         id: 'quality-process-framework',
-        label: 'Kvalitet/Prosess'
+        label: 'Kvalitet/Prosess/Rammeverk',
+        color: 'hsla(210, 100%, 50%, 0.5)'
       },
       {
         id: 'business',
-        label: 'Forretning'
+        label: 'Forretning',
+        color: 'hsla(180, 60%, 50%, 0.5)'
       },
       {
         id: 'communication',
-        label: 'Kommunikasjon'
+        label: 'Kommunikasjon',
+        color: 'hsla(240, 100%, 50%, 0.5)'
       },
       {
         id: 'leadership',
-        label: 'Lede/Ta ansvar'
+        label: 'Lede/Ta ansvar',
+        color: 'hsla(270, 100%, 50%, 0.5)'
       },
       {
         id: 'learning',
-        label: 'Læring'
-      }
+        label: 'Læring',
+        color: 'hsla(300, 100%, 60%, 0.5)'
+      },
+      {
+        id: 'database',
+        label: 'Database',
+        color: 'hsla(85, 100%, 50%, 0.5)'
+      },
     ]
   },
   {
     id: "platform",
     label: "Plattform",
+    color: 'hsla(40, 100%, 50%, 0.7)',
     topics: [
       {
         id:'sharing-visibility',
-        label: 'Dele/Synlighet'
+        label: 'Dele/Synlighet',
+        color: 'hsla(15, 100%, 50%, 0.5)'
       },
       {
         id: 'ui-design',
-        label: 'UI/Design'
+        label: 'UI/Design',
+        color: 'hsla(300, 100%, 80%, 0.5)'
       },
       {
         id: 'debugging',
-        label: 'Debugging'
+        label: 'Debugging',
+        color: 'hsla(40, 100%, 50%, 0.7)'
       },
       {
         id: 'programming',
-        label: 'Programmering'
+        label: 'Programmering',
+        color: 'hsla(100, 0%, 70%, 0.5)'
       },
       {
         id: 'security',
-        label: 'Sikkerhet'
+        label: 'Sikkerhet',
+        color: 'hsla(120, 50%, 50%, 0.5)'
       },
       {
         id: 'quality-process-framework',
-        label: 'Kvalitet/Prosess'
+        label: 'Kvalitet/Prosess/Rammeverk',
+        color: 'hsla(210, 100%, 50%, 0.5)'
       },
       {
         id: 'business',
-        label: 'Forretning'
+        label: 'Forretning',
+        color: 'hsla(180, 60%, 50%, 0.5)'
       },
       {
         id: 'communication',
-        label: 'Kommunikasjon'
+        label: 'Kommunikasjon',
+        color: 'hsla(240, 100%, 50%, 0.5)'
       },
       {
         id: 'leadership',
-        label: 'Lede/Ta ansvar'
+        label: 'Lede/Ta ansvar',
+        color: 'hsla(270, 100%, 50%, 0.5)'
       },
       {
         id: 'learning',
-        label: 'Læring'
+        label: 'Læring',
+        color: 'hsla(300, 100%, 60%, 0.5)'
       },
       {
         id: 'support',
-        label: 'Support'
+        label: 'Support',
+        color: 'hsla(0, 100%, 50%, 0.5)'
       },
       {
         id: 'infrastruktur',
-        label: 'Infrastruktur'
+        label: 'Infrastruktur',
+        color: 'hsla(25, 80%, 60%, 0.5)'
+      },
+      {
+        id: 'database',
+        label: 'Database',
+        color: 'hsla(85, 100%, 50%, 0.5)'
       },
     ]
   },
-]
-
-export const colors = [
-  'hsla(0, 100%, 50%, 0.5)',   // Red
-  'hsla(30, 100%, 50%, 0.5)',  // Orange
-  'hsla(60, 100%, 50%, 0.5)',  // Yellow
-  'hsla(120, 100%, 50%, 0.5)', // Green
-  'hsla(180, 100%, 50%, 0.5)', // Cyan
-  'hsla(210, 100%, 50%, 0.5)', // Blue
-  'hsla(240, 100%, 50%, 0.5)', // Indigo
-  'hsla(270, 100%, 50%, 0.5)', // Violet
-  'hsla(300, 100%, 50%, 0.5)', // Magenta
-  'hsla(330, 100%, 50%, 0.5)', // Pink
-  'hsla(15, 100%, 50%, 0.5)',  // Light Red (New color)
-  'hsla(45, 100%, 50%, 0.5)'   // Light Orange (New color)
 ]

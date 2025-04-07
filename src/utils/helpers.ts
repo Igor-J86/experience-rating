@@ -43,7 +43,7 @@ export const PdfDocument = async (area:string) => {
   const width = pdf.internal.pageSize.getWidth();
   const height = pdf.internal.pageSize.getHeight();
 
-  pdf.addImage(imgData, 'PNG', 0, 0, width, height); // Fit to page
+  pdf.addImage(imgData, 'PNG', 5, 0, width - 10, height); // Fit to page
   pdf.save(`${area}_summary.pdf`);
 
   canvasContainer?.removeAttribute('style');

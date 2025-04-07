@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Chart from "./components/Chart";
 import { areas } from "./utils/globals";
-import { loadLocal, saveLocal } from "./utils/helpers";
+import { loadLocal, removeLocal, saveLocal } from "./utils/helpers";
 import Topics from "./components/Topics";
 import Summary from "./components/Summary";
 
@@ -130,7 +130,7 @@ const App = () => {
 
   return (
     <>
-      <h1>Min kompetanse</h1>
+      <h1>Kompetanse</h1>
       <div className="container flex flex-wrap gal">
         <div className="flex flex-wrap gam justify-csb w100p">
           {!isSuperiorTotal &&
@@ -187,10 +187,29 @@ const App = () => {
                 handleInputChange={(e) => handleInputChange(e)}
                 updateScores={updateScores}
                 resetScores={() => {
+                  removeLocal(
+                    `posten-kompetanse-${selectedArea}${isSuperior ? "-SU" : ""}`
+                  )
                   if(isSuperior) {
-                    setAverageScores((prevScores) => prevScores.map((item) => ({...item, score: 1, count: 0})))
+                    setAverageScores(areas
+                      .find((area) => area.id === selectedArea)
+                      ?.topics.map((topic) => ({
+                        name: topic.id,
+                        label: topic.label,
+                        score: 1,
+                        count: 0
+                      })) || []
+                    )
                   } else {
-                    setScores((prevScores) => prevScores.map((item) => ({...item, score: 3})))
+                    setScores(
+                      areas
+                      .find((area) => area.id === selectedArea)
+                      ?.topics.map((topic) => ({
+                        name: topic.id,
+                        label: topic.label,
+                        score: 3,
+                      })) || []
+                    )
                   }
                 }}
                 inputs={inputs}
@@ -207,8 +226,9 @@ const App = () => {
             <Summary
               scores={isSuperiorTotal ? averageTotal : isSuperior ? averageScores : scores}
               selectedArea={
-                isSuperiorTotal ? 'Områder' : areas.find((area) => area.id === selectedArea)?.label || ""
+                isSuperiorTotal ? 'Profil' : areas.find((area) => area.id === selectedArea)?.label || ""
               }
+              isSuperior={isSuperior}
             />
           </>
         )}

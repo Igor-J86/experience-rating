@@ -6,7 +6,7 @@ import {
   Legend,
 } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
-import { areas, colors } from '../utils/globals';
+import { areas } from '../utils/globals';
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
@@ -78,7 +78,7 @@ const Chart:React.FC<ChartProps> = ({ area, scores, isSuperior, isSuperiorTotal 
       {
         label: ' Vurdering',
         data: scores.map(topic => topic.score),
-        backgroundColor: colors,
+        backgroundColor: isSuperiorTotal ? areas.map((a) => (a.color)) : areasData.topics.map((t) => (t.color)),
         borderWidth: 0,
       },
     ],
