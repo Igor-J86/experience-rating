@@ -4,6 +4,7 @@ import { areas } from "./utils/globals";
 import { loadLocal, removeLocal, saveLocal } from "./utils/helpers";
 import Topics from "./components/Topics";
 import Summary from "./components/Summary";
+import { Astronaut, Eye, EyeSlash, Persons } from "./components/Icons";
 
 const App = () => {
   const [selectedArea, setSelectedArea] = useState<string>("frontend");
@@ -161,7 +162,13 @@ const App = () => {
                 setIsSuperiorTotal(false)
                 }
               }>
-                {isSuperior ? "Individuell" : "Overordnet"}
+                {isSuperior ? <>
+                  <Astronaut />
+                  Individuell
+                </> : <>
+                  <Persons />
+                  Overordnet
+                </>}
               </button>
             )}
             {isSuperior &&
@@ -170,7 +177,13 @@ const App = () => {
                 setIsSuperiorTotal(!isSuperiorTotal)
                 }}
               >
-                {isSuperiorTotal ? 'Skjul totalsnitt' : 'Se totalsnitt'}
+                {isSuperiorTotal ? <>
+                  <EyeSlash />
+                  Skjul totalsnitt
+                </> : <>
+                  <Eye />
+                  Se totalsnitt
+                </>}
               </button>
             }
           </div>

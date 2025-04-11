@@ -1,4 +1,5 @@
 import { areas } from "../utils/globals";
+import { ChartPie, Trash } from "./Icons";
 
 type TopicsProps = {
   selectedArea: string;
@@ -66,11 +67,13 @@ const Topics = ({
         <div className="flex flex-dir-col gam">
           {isSuperior && !isSuperiorTotal &&
             <button onClick={updateScores}>
-              Beregn områdesnitt
+              <ChartPie />
+              Beregn profilsnitt
             </button>
           }
           {!isSuperiorTotal &&
-            <button onClick={resetScores}>
+            <button className="danger" onClick={resetScores}>
+              <Trash />
               Nullstill
             </button>
           }

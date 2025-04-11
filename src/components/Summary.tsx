@@ -1,4 +1,5 @@
 import { PdfDocument } from "../utils/helpers"
+import { Download } from "./Icons"
 
 type SummaryProps = {
   selectedArea: string
@@ -29,12 +30,17 @@ const Summary = ({ scores, selectedArea, isSuperior }:SummaryProps) => {
           ))}
         </dl>
       {!isNaN(scoreAverage) && scoreAverage && 
-        <div className="average">
-          <h3>Snitt:</h3>
-          <div>
-            {scoreAverage.toFixed(2)}
+        <div className="flex flex-dir-col gal align-ic">
+          <div className="flex flex-dir-col align-ic">
+            <h3>Snitt:</h3>
+            <div className="average">
+              {scoreAverage.toFixed(2)}
+            </div>
           </div>
-          <button onClick={() => PdfDocument(selectedArea)}>Last ned PDF</button>
+          <button onClick={() => PdfDocument(selectedArea)}>
+            <Download />
+            Last ned PDF
+          </button>
         </div>
       }
       </div>
