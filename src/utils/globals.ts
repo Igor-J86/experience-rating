@@ -124,11 +124,6 @@ export const areas = [
         color: 'hsla(15, 100%, 50%, 0.5)'
       },
       {
-        id: 'ui-design',
-        label: 'UI/Design',
-        color: 'hsla(300, 100%, 80%, 0.5)'
-      },
-      {
         id: 'debugging',
         label: 'Debugging',
         color: 'hsla(50, 100%, 50%, 0.6)'
@@ -184,11 +179,6 @@ export const areas = [
         id:'sharing-visibility',
         label: 'Dele/Synlighet',
         color: 'hsla(15, 100%, 50%, 0.5)'
-      },
-      {
-        id: 'ui-design',
-        label: 'UI/Design',
-        color: 'hsla(300, 100%, 80%, 0.5)'
       },
       {
         id: 'debugging',
